@@ -43,7 +43,7 @@ return (
  
 
  <Box sx={{ display: "flex", alignItems: "center", flexGrow: 0 }}>
-    <Typography variant="h6" component="div" sx={{ fontSize: { xs: 10, md: 16 } }}>
+    <Typography variant="h6" component="div" sx={{ fontSize: { xs: 13, md: 16 } }}>
       Blog
     </Typography>
   </Box>
@@ -55,7 +55,7 @@ return (
     {items.map((item) => (
       <Button
         key={item.name}
-        sx={{ fontSize: { xs: 8, md: 16 },display:{xs:"none",md:"flex"} }}
+        sx={{ fontSize: { xs: 13, md: 16 },display:{xs:"none",md:"flex"} }}
         onClick={() => setActiveSection(item.name)}
         color="inherit"
       >
@@ -67,7 +67,7 @@ return (
       component={Link}
       to="/register"
       sx={{
-        fontSize:{xs:13,md:14},
+        fontSize:{xs:13,md:16},
         color: "white",
         marginRight:{xs:0.5,md:1},
         textDecoration: "none",
