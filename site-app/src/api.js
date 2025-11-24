@@ -1,6 +1,6 @@
  import axios from "axios";
 
- const API_ROOT = "http://localhost:5000";
+ const API_ROOT = "https://blogsite-7aer.onrender.com";
 
 //  Folder where Express serves images
 const BLOG_IMG_PATH = "/Public/img/";
