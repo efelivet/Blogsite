@@ -13,7 +13,7 @@
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://blogsite-7aer.onrender.com",
     credentials: true,
   })
 );
