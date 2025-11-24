@@ -13,7 +13,7 @@
 // Middleware
 app.use(
   cors({
-    origin: "https://blogsite-7aer.onrender.com",
+    origin: "https://vblog-9guj.onrender.com",
     credentials: true,
   })
 );
