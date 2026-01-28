@@ -8,6 +8,8 @@ import FetchBlogs from './FetchBlogs';
 import SingleBlog from './SingleBlog'
 import NewsArticle from './NewsArticle'
 import { useAuth } from "./AuthContext";
+
+
 function App(){
   
  const {user} =useAuth();
@@ -16,7 +18,7 @@ function App(){
     <BrowserRouter>
     
     <Routes>
-      <Route path="/" element={ <LightDarkTheme/>}/>
+      <Route path="/" element={ <LightDarkTheme />}/>
       <Route path ='/login' element ={<Login/>}/>
       <Route path ='/register' element ={<Register/>}/>
       {user?.isAdmin && <Route path="/post" element={<Post />} />}

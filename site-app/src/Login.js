@@ -51,8 +51,10 @@ import {useAuth} from './AuthContext';
       setPassword("");
     } catch (err) {
       console.error(err);
+      setLoading(false);
       setError(err.response?.data?.message || "Invalid credentials!");
     }
+   
   };
 
     return(

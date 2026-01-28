@@ -5,12 +5,12 @@
  const cors = require("cors");
  const path =require("path");
  const authRoute = require('./routes/auth.js');
- const blogRouter = require("./routes/blogRouter");
+ const blogRouter = require("./routes/blogRouter.js");
  
  dotenv.config();
 
  const app =express();
-// Middleware
+
 app.use(
   cors({
     origin: "http://localhost:3000",
