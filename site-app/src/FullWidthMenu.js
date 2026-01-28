@@ -61,32 +61,7 @@ return (
       </Button>
     ))}
 
-    <MuiLink
-      component={Link}
-      to="/register"
-      sx={{
-        fontSize:{xs:13,md:14},
-        color: "white",
-        marginRight:{xs:0.5,md:1},
-        textDecoration: "none",
-        "&:hover": { textDecoration: "underline" },
-      }}
-    >
-      Register
-    </MuiLink>
-
-    <MuiLink
-      component={Link}
-      to="/login"
-      sx={{
-       fontSize:{xs:13,md:14},
-        color: "white",
-        textDecoration: "none",
-        "&:hover": { textDecoration: "underline" },
-      }}
-    >
-      Login
-    </MuiLink>
+ 
   </Box>
 
 
