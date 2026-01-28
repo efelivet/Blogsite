@@ -53,7 +53,7 @@ return (
     {items.map((item) => (
       <Button
         key={item.name}
-        sx={{ fontSize: { xs: 8, md: 16 },display:{xs:"none",md:"flex"} }}
+        sx={{ fontSize: { xs: 8, md: 16 },display:'flex' }}
         onClick={() => setActiveSection(item.name)}
         color="inherit"
       >

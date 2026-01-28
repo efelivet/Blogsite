@@ -57,22 +57,22 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Invalid username or password" });
     }
 
-    // Compare passwords
+    
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid username or password" });
     }
 
-    // Generate JWT token (optional)
+    
     const token = jwt.sign(
       { id: user._id, username: user.username,isAdmin: user.isAdmin },
-      "mySecretKey", // in real projects, use process.env.JWT_SECRET
+      "mySecretKey", 
       { expiresIn: "3d" }
     );
   res.cookie("token", token, {
     httpOnly: true,
-    secure: false, // 👈 keep false for localhost
-    sameSite: "lax", // 👈 use lax for dev (strict blocks localhost:3000→5000)
+    secure: true, 
+    sameSite: "none", 
   });
 
  
