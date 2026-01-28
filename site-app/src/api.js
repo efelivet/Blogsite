@@ -2,7 +2,6 @@
 
  const API_ROOT = "https://blogsite-7aer.onrender.com";
 
-
 const BLOG_IMG_PATH = "/Public/img/";
 
 export const API = axios.create({
