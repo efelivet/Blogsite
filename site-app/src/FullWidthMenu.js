@@ -1,4 +1,5 @@
  import React, { useState } from "react";
+ import './App.css'
 import { AppBar, Toolbar, IconButton, Typography, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
@@ -32,44 +33,44 @@ const items =[
 
 
 return (
-<Box sx={{ flexGrow: 1,width:"100%" }} >
-<AppBar position="static" color="primary">
-<Toolbar >
+<Box  >
+<AppBar position="static" color="primary ">
+<Toolbar sx={{ display:"flex",justisfyContent:"space-evenly",flexWrap:"wrap"}} >
 
 
 
  
 
- <Box sx={{ display: "flex", alignItems: "center", flexGrow: 0 }}>
-    <Typography variant="h6" component="div" sx={{ fontSize: { xs: 8, md: 16 } }}>
+ <Box sx={{ display: "flex",flex:{xs:0,md:1}}}>
+    <Typography variant="h6" component="div" sx={{ fontSize: { xs: 8, md: 16 },
+    display:{xs:"none",md:"block"}, }}>
       Blog
     </Typography>
   </Box>
 
 
 
-<Box sx={{ display: "flex", flexGrow: 1,
-   justifyContent:"center", alignItems: "center"}}>
+<Box sx={{ display: "flex",flex:1,justifyContent:{xs:"flex-start",md:"center"}}}>
     {items.map((item) => (
-      <Button
+      <button
         key={item.name}
-        sx={{ fontSize: { xs: 8, md: 16 },display:'flex' }}
         onClick={() => setActiveSection(item.name)}
         color="inherit"
-      >
+        className="button-nav"
+      > 
         {item.name}
-      </Button>
+      </button>
     ))}
 
  
   </Box>
 
 
- <Box sx={{ display: "flex", alignItems: "center", }}>
+ <Box sx={{ display: "flex",flex:1,justifyContent:"flex-end",}}>
     <IconButton color="inherit" onClick={toggleTheme}>
       {mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
     </IconButton>
-    <IconButton edge="start" color="inherit" onClick={handleMenuToggle} sx={{marginLeft:2}}>
+    <IconButton edge="start" color="inherit" onClick={handleMenuToggle} sx={{marginLeft:{xs:1,md:2}}} >
       <MenuIcon />
     </IconButton>
    

@@ -1,6 +1,6 @@
  import axios from "axios";
 
- const API_ROOT = "https://blogsite-7aer.onrender.com";
+ const API_ROOT = "https://blogsite-dev.onrender.com";
 
 const BLOG_IMG_PATH = "/Public/img/";
 

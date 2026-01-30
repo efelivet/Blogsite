@@ -22,7 +22,7 @@ import { useAuth } from "./AuthContext";
  
   
   return (
-    <Container maxWidth="md" sx={{ py: 2 }}>
+    <Container  sx={{ py: 2 }}>
    
       <Box sx={{ mt: 1 }}>
       {blogs.map(blog => (

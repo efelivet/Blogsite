@@ -166,8 +166,8 @@ const BlogCard = ({ post, currentUser }) => {
   };
 
   return (
-    <Card sx={{maxWidth:{xs:600,md:1000} ,  mx: "auto", mb: 2,
-     boxShadow: 3, borderRadius: 2 }}>
+    <Card sx={{mb: 2,
+boxShadow: 3, borderRadius: 2,}}>
       {/* Image */}
       {post.img && (
         <CardMedia
@@ -176,7 +176,8 @@ const BlogCard = ({ post, currentUser }) => {
           alt={post.title}
            sx={{
        
-        height: 200,     
+        height: 200, 
+          
         objectFit: "contain", 
         mt:1,
       }}
