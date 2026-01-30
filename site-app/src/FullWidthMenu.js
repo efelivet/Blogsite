@@ -42,7 +42,7 @@ return (
  
 
  <Box sx={{ display: "flex",flex:{xs:0,md:1}}}>
-    <Typography variant="h6" component="div" sx={{ fontSize: { xs: 8, md: 16 },
+    <Typography variant="h6" component="div" sx={{ fontSize: { xs: "0.8rem", md:"1.5rem" },
     display:{xs:"none",md:"block"}, }}>
       Blog
     </Typography>
