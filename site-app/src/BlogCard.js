@@ -51,7 +51,7 @@ const BlogCard = ({ post, currentUser }) => {
 
        
 
-      const res = await API.post(`/api/${post._id}/like`);
+      const res = await API.post(`/api/blog/${post._id}/like`);
 
        // Update state based entirely on backend response
     setLikeCount(res.data.likes);
@@ -64,7 +64,7 @@ const BlogCard = ({ post, currentUser }) => {
 
   // ---------- Share ----------
   const handleShare = async () => {
-    const url = `${window.location.origin}/api/${post._id}`;
+    const url = `${window.location.origin}/api/blog/${post._id}`;
     if (navigator.share) {
       try {
         await navigator.share({ title: post.title, url });
@@ -94,7 +94,7 @@ const BlogCard = ({ post, currentUser }) => {
   useEffect(() => {
   const fetchComments = async () => {
     try {
-      const res = await API.get(`/api/${post._id}/comment`);
+      const res = await API.get(`/api/blog/${post._id}/comment`);
       setComments(res.data);
     } catch (err) {
       console.error("Failed to fetch comments:", err);
@@ -116,7 +116,7 @@ const BlogCard = ({ post, currentUser }) => {
     setShowCommentBox(false);
 
     try {
-      const res = await API.post(`/api/${post._id}/comment`, { text });
+      const res = await API.post(`/api/blog/${post._id}/comment`, { text });
       setComments((prev) => [...prev, res.data]);
     } catch (err) {
       alert("Failed to post comment");
@@ -129,7 +129,7 @@ const BlogCard = ({ post, currentUser }) => {
   const handleDeleteComment = async (commentId) => {
     if (!window.confirm("Delete this comment?")) return;
     try {
-      await API.delete(`/api/${post._id}/comment/${commentId}`);
+      await API.delete(`/api/blog/${post._id}/comment/${commentId}`);
       setComments((prev) => prev.filter((c) => c._id !== commentId));
     } catch (err) {
       alert("Failed to delete comment");
@@ -153,7 +153,7 @@ const BlogCard = ({ post, currentUser }) => {
   const handleUpdateComment = async (commentId) => {
     if (!editingText.trim()) return;
     try {
-      const res = await API.put(`/api/${post._id}/comment/${commentId}`, {
+      const res = await API.put(`/api/blog/${post._id}/comment/${commentId}`, {
         text: editingText.trim(),
       });
       setComments((prev) =>

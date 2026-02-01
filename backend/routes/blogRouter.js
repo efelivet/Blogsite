@@ -184,7 +184,7 @@ try {
 
 
 // POST: Like a Blog
-router.post("/:id/like", verifyToken, async (req, res) => {
+router.post("/:id/like", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
     if (!blog) return res.status(404).json({ message: "Blog not found" });
@@ -206,7 +206,7 @@ router.post("/:id/like", verifyToken, async (req, res) => {
   }
 });
 // POST: Comment on Blog
-router.post("/:id/comment", verifyToken, async (req, res) => {
+router.post("/:id/comment", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const { text } = req.body;
     if (!text) return res.status(400).json({ message: "Comment text required" });
