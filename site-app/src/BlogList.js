@@ -12,6 +12,7 @@ import { useAuth } from "./AuthContext";
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null);    
   
+  console.log("this is user",user)
 
 useEffect(() => {
     const fetchBlogs = async () => {

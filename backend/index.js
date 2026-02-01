@@ -31,8 +31,9 @@ app.use(cookieParser());
 
 // Use the router here
 
-app.use("/api",authRoute)
+app.use("/api/auth",authRoute)
 app.use("/api", blogRouter);
+
 app.use("/Public", express.static(path.join(__dirname,"Public")))
 
 app.get('/',(req,res)=>{
