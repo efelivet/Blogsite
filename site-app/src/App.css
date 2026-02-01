@@ -13,6 +13,25 @@
    padding:4px;
    border:none;
    background-color: white;
+   cursor: pointer; 
+    transition: all 0.3s ease; 
+    color: #555;
+}
+
+.button-nav:hover {
+    background-color: #f0f0f0;
+    color: #000;
+    border-bottom: 3px solid #ccc;
+}
+
+.button-nav:active {
+    transform: scale(0.95);
+    background-color: #e0e0e0;
+}
+
+.button-nav.active-link {
+    color: #1976d2; 
+    font-weight: bold;
 }
 
 @media (max-width:480px) {

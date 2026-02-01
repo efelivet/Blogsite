@@ -88,7 +88,7 @@ const BlogCard = ({ post, currentUser }) => {
   // ---------- Comment ----------
   const [showCommentBox, setShowCommentBox] = useState(false);
   const [commentText, setCommentText] = useState("");
-  const [comments, setComments] = useState([]); // ← Should later load from backend
+  const [comments, setComments] = useState([]); 
   const [loadingComment, setLoadingComment] = useState(false);
 
   useEffect(() => {

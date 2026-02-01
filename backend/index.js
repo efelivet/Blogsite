@@ -13,7 +13,7 @@
 
 app.use(
   cors({
-    origin: ["http://localhost:3000","https://blogsite-dev.onrender.com"],
+    origin: ["https://blogsite-dev.onrender.com","http://localhost:3000"],
     credentials: true,
   })
 );
