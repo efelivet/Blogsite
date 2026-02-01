@@ -20,7 +20,7 @@ useEffect(() => {
       setError(null);  
       
       try {
-        const res = await API.get(`/api/fetchAll?category=${category}`);
+        const res = await API.get(`/api/blog/fetchAll?category=${category}`);
         
    
         if (res.data && res.data.blogs) {
