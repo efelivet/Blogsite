@@ -25,7 +25,7 @@ import {useAuth} from './AuthContext';
     setLoading(true); // Start spinner
 
     try {
-      const res = await API.post("/api/login", { username, password });
+      const res = await API.post("/api/auth/login", { username, password });
 
       setSuccess("Login successful!");
 
