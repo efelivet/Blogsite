@@ -1,10 +1,10 @@
  import React, { useState, useMemo } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import FullWidthMenu from "./FullWidthMenu";
+import NavbarMenu from "./NavbarMenu";
 
 
-export default function LightDarkTheme() {
+export default function NavbarMenuTheme() {
 
 const [mode, setMode] = useState("light");
 const theme = useMemo(
@@ -32,7 +32,7 @@ setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
 return (
 <ThemeProvider theme={theme}>
 <CssBaseline />
-<FullWidthMenu toggleTheme={toggleTheme} mode={mode} />
+<NavbarMenu toggleTheme={toggleTheme} mode={mode} />
 
 </ThemeProvider>
 );

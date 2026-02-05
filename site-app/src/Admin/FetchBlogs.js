@@ -1,7 +1,7 @@
  import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate, Link } from "react-router-dom";
-import {API} from "./api";
+import {API} from "../api";
 
 import {
   Box,
@@ -38,7 +38,6 @@ const FetchBlogs = () => {
   );
   const [page, setPage] = useState(parseInt(searchParams.get("page")) || 1);
 
-  // 🔹 Debounced effect for updating URL params
   useEffect(() => {
     const handler = setTimeout(() => {
       const params = {};
@@ -47,17 +46,17 @@ const FetchBlogs = () => {
       if (page > 1) params.page = page;
 
       setSearchParams(params);
-    }, 500); // ⏱️ debounce delay
+    }, 500); 
 
     return () => clearTimeout(handler);
   }, [search, selectedCats, page, setSearchParams]);
 
-  // 🔹 Fetch blogs when searchParams change
+
   useEffect(() => {
     const fetchBlogs = async () => {
       setLoading(true);
       try {
-        const res = await API.get("/api/fetchAll", { params: searchParams });
+        const res = await API.get("/api/blog/fetchAll", { params: searchParams });
         setBlogs(res.data.blogs);
         setPagination(res.data.pagination);
       } catch (err) {

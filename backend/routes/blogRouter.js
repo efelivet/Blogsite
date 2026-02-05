@@ -24,7 +24,7 @@ const upload =multer({
 })
 
 // POST: Create Blog (Admin OR Authenticated User)
-router.post("/blogs",verifyToken,upload.single('img'), async (req, res) => {
+router.post("/create",verifyTokenAndAdmin,upload.single('img'), async (req, res) => {
   try {
       // Split and clean categories
       const categories = req.body.categories
@@ -33,16 +33,16 @@ router.post("/blogs",verifyToken,upload.single('img'), async (req, res) => {
             .map((c) => c.trim().toLowerCase())
             .filter((c) => c)
         : [];
-
+    console.log(req.user.id)
     const { title, description } = req.body;
-  
+ 
     const newBlog = new Blog({
       title,
       description,
       categories,
       img:req.file.filename,
-      author:req.user.id, // from JWT
-      // from JWT
+      author:req.user.id
+    
     });
 
     const savedBlog = await newBlog.save();
@@ -56,30 +56,28 @@ router.post("/blogs",verifyToken,upload.single('img'), async (req, res) => {
 router.get("/fetchAll", async (req, res) => {
   try {
     const { 
-      category,      // single: ?category=tech
-      categories,    // multiple: ?categories=tech,sport
-      q,             // search: ?q=AI
+      category,     
+      categories,    
+      q,            
       page = 1, 
       limit = 10,
-      sort = "-createdAt" // default: newest first
+      sort = "-createdAt" 
     } = req.query;
 
-    // Build query
     const query = {};
 
-    // 1. Filter by single category
     if (category) {
       query.categories = category;
     }
 
-    // 2. Filter by multiple categories (AND logic)
+    
     if (categories) {
       const cats = categories.split(",").map(c => c.trim());
-      query.categories = { $all: cats }; // must have ALL
-      // Use $in for OR logic: { $in: cats }
+      query.categories = { $all: cats }; 
+      
     }
 
-    // 3. Search in title & description
+    
     if (q) {
       query.$or = [
         { title: { $regex: q, $options: "i" } },
@@ -87,19 +85,19 @@ router.get("/fetchAll", async (req, res) => {
       ];
     }
 
-    // 4. Pagination
+  
     const skip = (page - 1) * limit;
     const total = await Blog.countDocuments(query);
 
-    // 5. Fetch blogs
+  
     const blogs = await Blog.find(query)
       .populate("author", "username")
       .populate("comments.userId", "username")
-      .sort(sort)           // e.g., "-createdAt", "likes.length"
+      .sort(sort)        
       .skip(skip)
       .limit(parseInt(limit));
 
-    // 6. Add likes count
+   
     const blogsWithLikes = blogs.map(blog => ({
       ...blog._doc,
       likesCount: blog.likes.length,

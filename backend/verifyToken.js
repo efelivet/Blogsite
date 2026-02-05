@@ -1,20 +1,29 @@
  const jwt = require("jsonwebtoken");
 
- const JWT_SECRET = process.env.JWT_SECRET || "mySecretKey";
-
-// ---------- VERIFY TOKEN FROM COOKIE ----------
 const verifyToken = (req, res, next) => {
   const token = req.cookies?.token;
-  if (!token) return res.status(401).json({ message: "No token" });
+
+
+
+  if (!token) {
+    return res.status(401).json({
+      message: 'Authentication failed - no token provided'
+    });
+  }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    req.user = decoded;               // { id, username, isAdmin }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'mySecretKey');
+    req.user = decoded; // { id, username, isAdmin, iat, exp }
     next();
   } catch (err) {
-    return res.status(403).json({ message: "Invalid token" });
+    console.log('Token verification failed:', err.message);
+
+    return res.status(403).json({
+      message: 'Invalid or expired token'
+    });
   }
 };
+
 
 
 // ======================
@@ -29,10 +38,16 @@ const verifyTokenAndAuthorization =(req,res,next)=>{
 
 // ---------- ADMIN-ONLY MIDDLEWARE ----------
 const verifyTokenAndAdmin = (req, res, next) => {
-  if (!req.user.isAdmin) {
-    return res.status(403).json({ message: "Admin required" });
-  }
-  next();
+ 
+  verifyToken(req, res, () => {
+  
+    if (req.user.isAdmin) {
+      next();
+    } else {
+      console.log("Admin check failed for user:", req.user?.username);
+      return res.status(403).json({ message: "Admin access required" });
+    }
+  });
 };
 
 

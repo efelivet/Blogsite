@@ -1,7 +1,8 @@
- // src/components/SingleBlog.jsx
+
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {API} from "./api";
+import {API} from "../api";
+import { getBlogImage } from '../api';
 import {
   Container,
   Typography,
@@ -48,7 +49,7 @@ const SingleBlog = () => {
     const fetchBlog = async () => {
       setLoading(true);
       try {
-        const res = await API.get(`/api/fetchOne/${id}`);
+        const res = await API.get(`/api/blog/fetchOne/${id}`);
         setBlog(res.data);
         setEditData({
           title: res.data.title,
@@ -64,30 +65,30 @@ const SingleBlog = () => {
     window.scrollTo(0, 0);
   }, [id]);
 
-  // ✅ Handle Delete (send DELETE request with ID)
+  
   const handleDelete = async (id) => {
     try {
-      await API.delete(`/api/delete/${id}`);
+      await API.delete(`/api/blog/delete/${id}`);
       setOpenDelete(false);
-      navigate("/fetchAll"); // redirect after successful deletion
+      navigate("/fetchAll"); 
     } catch (err) {
       console.error("Error deleting blog:", err);
       setOpenDelete(false);
     }
   };
 
-  // ✅ Handle Edit (send PUT request with ID and updated data)
+ 
   const handleEdit = async () => {
     try {
-      const res = await API.put(`/api/update/${id}`, editData);
-      setBlog(res.data); // update UI with edited data
+      const res = await API.put(`/api/blog/update/${id}`, editData);
+      setBlog(res.data);
       setOpenEdit(false);
     } catch (err) {
       console.error("Error updating blog:", err);
     }
   };
 
-  // UI Loading State
+  
   if (loading) {
     return <CircularProgress sx={{ display: "block", mx: "auto", mt: 10 }} />;
   }
@@ -168,7 +169,7 @@ const SingleBlog = () => {
         {blog.img && (
           <CardMedia
             component="img"
-            image={`/img/${blog.img}`}
+            image={getBlogImage(blog.img)}
             alt={blog.title}
             sx={{
               height: { xs: 250, sm: 400 },

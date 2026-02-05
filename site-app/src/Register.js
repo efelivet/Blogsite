@@ -16,7 +16,7 @@
    e.preventDefault();
    setError("");
    setSuccess("");
-   setLoading(true); // Start spinner
+   setLoading(true); 
 
    if(password !== confirmPassword){
       alert("Passwords do not match!")
@@ -25,7 +25,7 @@
    const userData = {username,password};
    console.log("Register Data:", userData);
    try{
-      const res = await API.post("/api/register",{username,password})
+      const res = await API.post("/api/auth/register",{username,password})
    
       console.log(res.data);
       setSuccess("Registration successful")
@@ -37,34 +37,52 @@
       setError(err.response?.data?.message || "Registration failed!")
       
    }finally {
-    setLoading(false); // ✅ stop spinner always (success or fail)
+    setLoading(false); 
   }
   }
 
      return(
-   <Container maxWidth ="sm" sx={{mt:10,display:"flex",
+   <Container maxWidth ="sm" sx={{mt:2,display:"flex",
     justifyContent:"center",alignItems:"center",
    
    }}>
     <Paper elevation ={3} sx ={{p:2,borderRadius:3,
        backgroundColor:"rgba(255,255,255,0.95)",}}>
-    <Typography sx={{textAlign:"center",m:2}}>
+    <Typography sx={{textAlign:"center",m:2,color:"teal"}}>
       Signup
     </Typography>
  
     <Box component ="form" onSubmit ={handleSubmit} sx={{display:"flex",flexDirection:"column",alignItems:"center",
        justifyContent:"center",}}>
-       <TextField sx={{maxWidth:300,mb:2}} type ="username"
+       <TextField sx={{maxWidth:300,mb:2,  "& .MuiInputLabel-root": {
+      color: "teal"
+    },
+       "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "teal"
+      }}}} type ="username"
        label="username"
         value={username}
         onChange={(e)=>setUsername(e.target.value)}/>
 
-       <TextField  sx={{maxWidth:300,mb:2}} type ="Password"
+       <TextField  sx={{maxWidth:300,mb:2,  "& .MuiInputLabel-root": {
+      color: "teal"
+    },
+       "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "teal"
+      }}}} type ="Password"
        value={password}
        label ="password"
        onChange={(e)=>setPassword(e.target.value)} />
 
-       <TextField  sx={{maxWidth:300}} type ="Password"
+       <TextField  sx={{maxWidth:300,  "& .MuiInputLabel-root": {
+      color: "teal"
+    },
+       "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "teal"
+      }}}} type ="Password" 
        value={confirmPassword}
        label ="confirm password"
        onChange={(e)=>setConfirmPassword(e.target.value)} />
@@ -125,7 +143,7 @@
 </Button>
 
 
-       <Typography variant ="body2">
+       <Typography variant ="body2" sx={{color:"teal"}}>
          Already have an account?{" "}
          <Link to="/login" style={{color:"#2e7d32",textDecoration:"none"}}>
          Login

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {API} from './api'
+import {API} from '../api'
 import {useNavigate, Link} from "react-router-dom"
 
 import {
@@ -54,7 +54,7 @@ const Post = () => {
 
 
     try {
-      await API.post("/api/blogs", data);
+      await API.post("/api/blog/create", data);
       setMessage({ text: "Blog created!", type: "success" });
       setForm({ title: "", description: "", categories: "", image: null });
       setPreview("");

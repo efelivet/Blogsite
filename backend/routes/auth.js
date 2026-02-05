@@ -4,7 +4,7 @@
  const jwt = require("jsonwebtoken")
 
  const router = express.Router();
-const { verifyToken} = require("../verifyToken");
+const { verifyToken,verifyTokenAndAdmin} = require("../verifyToken");
  // POST
  router.post("/register",async(req,res)=>{
     try{
@@ -66,13 +66,13 @@ router.post("/login", async (req, res) => {
     
     const token = jwt.sign(
       { id: user._id, username: user.username,isAdmin: user.isAdmin },
-      process.env.JWT_SECRET, 
+     process.env.JWT_SECRET || "mySecretKey", 
       { expiresIn: "3d" }
     );
   res.cookie("token", token, {
     httpOnly: true,
     secure: true, 
-    sameSite: "none", 
+    sameSite: "lax", 
   });
 
  
@@ -89,7 +89,7 @@ router.post("/login", async (req, res) => {
 });
 
 // routes/auth.js
-router.get("/me", verifyToken, async (req, res) => {
+router.get("/getme", verifyTokenAndAdmin, async (req, res) => {
   try {
     res.status(200).json(req.user)
   } catch (err) {

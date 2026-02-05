@@ -22,7 +22,7 @@ import {useAuth} from './AuthContext';
     e.preventDefault();
     setError("");
     setSuccess("");
-    setLoading(true); // Start spinner
+    setLoading(true); 
 
     try {
       const res = await API.post("/api/auth/login", { username, password });
@@ -34,7 +34,7 @@ import {useAuth} from './AuthContext';
 
            console.log(user);
 
-      // Save user in AuthContext
+      
       setUser(user);
 
       setTimeout(() => {
@@ -59,24 +59,38 @@ import {useAuth} from './AuthContext';
 
     return(
 
-  <Container maxWidth ="sm" sx={{mt:10,display:"flex",
+  <Container maxWidth ="sm" sx={{mt:5,display:"flex",
    justifyContent:"center",alignItems:"center",
   
   }}>
    <Paper elevation ={3} sx ={{p:2,borderRadius:3,
       backgroundColor:"rgba(255,255,255,0.95)",}}>
-   <Typography sx={{textAlign:"center",m:2}}>
+   <Typography sx={{textAlign:"center",m:2,color:"teal"}}>
       Login to your Account
    </Typography>
 
    <Box   component="form"  onSubmit={handleSubmit} sx={{display:"flex",flexDirection:"column",alignItems:"center",
       justifyContent:"center",}}>
-      <TextField sx={{maxWidth:300,mb:3}} type ="username" 
-       value={username}
+      <TextField sx={{maxWidth:300,mb:3,"& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "teal"
+      }},borderRadius:2,
+ "& .MuiInputLabel-root": {
+      color: "teal"
+    },
+      }} type ="username" 
+       value={username} label="username" 
        onChange={(e) => setUsername(e.target.value)}
       />
-      <TextField  sx={{maxWidth:300}} type ="Password"
-       value={password}
+      <TextField  sx={{maxWidth:300, "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "teal"
+      }},borderRadius:2,
+         "& .MuiInputLabel-root": {
+      color: "teal"
+    },
+      }} type ="Password"
+       value={password} label="password"
        onChange={(e) => setPassword(e.target.value)}
       />
 
@@ -117,7 +131,7 @@ import {useAuth} from './AuthContext';
 >
   {loading ? (
     <>
-      {/* Background overlay (same color as button) */}
+    
       <Box
         sx={{
           position: "absolute",
@@ -147,7 +161,7 @@ import {useAuth} from './AuthContext';
 </Button>
 
    </Box>
-   <Typography variant='body2' align='center' sx={{mt:2}}>
+   <Typography variant='body2' align='center' sx={{mt:2,color:"teal"}}>
     Don't have an account?{" "}
     <Link to="/register">Register</Link>
    </Typography>

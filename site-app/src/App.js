@@ -1,33 +1,43 @@
 import './App.css';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import LightDarkTheme from './LightDarkTheme';
+import NavbarMenuTheme from './NavbarMenuTheme';
 import Login from './Login'
 import Register from './Register'
-import Post from './Post';
-import FetchBlogs from './FetchBlogs';
-import SingleBlog from './SingleBlog'
-import NewsArticle from './NewsArticle'
+import Post from './Admin/Post';
+import FetchBlogs from './Admin/FetchBlogs';
+import SingleBlog from './Admin/SingleBlog'
 import { useAuth } from "./AuthContext";
-
+import BlogDetails from "./BlogDetails"
+import News from "./News";
+import Sport from "./Sport"
+import Tech from "./Tech"
+import Videos from "./Videos"
 
 function App(){
   
  const {user} =useAuth();
+
    return (
    <>
     <BrowserRouter>
     
     <Routes>
-      <Route path="/" element={ <LightDarkTheme />}/>
+      <Route element={<NavbarMenuTheme />}>
+      <Route path ='/' element ={<News/>}/>
+      <Route path ='/sport' element ={<Sport/>}/>
+      <Route path ='/tech' element ={<Tech/>}/>
+      <Route path ='/videos' element ={<Videos/>}/>
       <Route path ='/login' element ={<Login/>}/>
       <Route path ='/register' element ={<Register/>}/>
-      {user?.isAdmin && <Route path="/post" element={<Post />} />}
-   
+      <Route path ='/blog/:id' element ={<BlogDetails/>}/>
      
-      <Route path="/fetchAll" element={<FetchBlogs />} />
-       <Route path="/fetchOne/:id" element={<SingleBlog />} />
-       <Route path="news" element={<NewsArticle />} />
-  
+      {user?.isAdmin ?<Route path="/post" element={<Post />} />
+      : <Route path ='/' element ={<News/>}/>}
+       
+       <Route path="/fetchAll" element={<FetchBlogs />} />
+       <Route path="/fetchOne/blog/:id" element={<SingleBlog />} />
+     
+    </Route>
     </Routes>
     </BrowserRouter>
   
