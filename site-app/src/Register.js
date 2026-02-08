@@ -45,15 +45,16 @@
    <Container maxWidth ="sm" sx={{display:"flex",height:"70vh",justifyContent:"center",alignItems:"center",
    
    }}>
-    <Paper elevation ={3} sx ={{p:2,borderRadius:3,
-       backgroundColor:"rgba(255,255,255,0.95)",}}>
-    <Typography sx={{textAlign:"center",m:2,color:"teal"}}>
+    <Paper elevation ={3} sx ={{p:2,borderRadius:3,width:"80vw",
+       backgroundColor:"rgba(255,255,255,0.95)"}}>
+    <Typography sx={{textAlign:"center",m:2,color:"teal",fontSize:{xs:"1rem",md:"1.5rem"}}}>
       Signup
     </Typography>
  
     <Box component ="form" onSubmit ={handleSubmit} sx={{display:"flex",flexDirection:"column",alignItems:"center",
-       justifyContent:"center",}}>
-       <TextField sx={{maxWidth:"40vw",mb:2,  "& .MuiInputLabel-root": {
+       justifyContent:"center"}}>
+       <TextField sx={{width:{xs:"45vw",md:"70vw"},mb:2,
+         "& .MuiInputLabel-root": {
       color: "teal"
     },
        "& .MuiOutlinedInput-root": {
@@ -64,7 +65,7 @@
         value={username}
         onChange={(e)=>setUsername(e.target.value)}/>
 
-       <TextField  sx={{maxWidth:"40vw",mb:2,  "& .MuiInputLabel-root": {
+       <TextField  sx={{width:{xs:"45vw",md:"70vw"},mb:2,  "& .MuiInputLabel-root": {
       color: "teal"
     },
        "& .MuiOutlinedInput-root": {
@@ -75,7 +76,7 @@
        label ="password"
        onChange={(e)=>setPassword(e.target.value)} />
 
-       <TextField  sx={{maxWidth:"40vw",  "& .MuiInputLabel-root": {
+       <TextField  sx={{width:{xs:"45vw",md:"70vw"}, "& .MuiInputLabel-root": {
       color: "teal"
     },
        "& .MuiOutlinedInput-root": {
@@ -107,6 +108,7 @@
     position: "relative",
     textTransform: "none",
     fontWeight: 500,
+    fontSize:"1rem",
   }}
   disabled={loading}
 >

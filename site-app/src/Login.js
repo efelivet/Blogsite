@@ -62,15 +62,15 @@ import {useAuth} from './AuthContext';
   <Container maxWidth ="sm" sx={{display:"flex",height:"70vh", justifyContent:"center",alignItems:"center",
   
   }}>
-   <Paper elevation ={3} sx ={{p:2,borderRadius:3,
+   <Paper elevation ={3} sx ={{p:2,borderRadius:3,width:"80vw",
       backgroundColor:"rgba(255,255,255,0.95)",}}>
-   <Typography sx={{textAlign:"center",m:2,color:"teal"}}>
+   <Typography sx={{textAlign:"center",m:2,color:"teal",fontSize:{xs:"1rem",md:"1.5rem"}}}>
       Login to your Account
    </Typography>
 
    <Box   component="form"  onSubmit={handleSubmit} sx={{display:"flex",flexDirection:"column",alignItems:"center",
       justifyContent:"center",}}>
-      <TextField sx={{maxWidth:"40vw",mb:3,"& .MuiOutlinedInput-root": {
+      <TextField sx={{width:{xs:"45vw",md:"70vw"},mb:3,"& .MuiOutlinedInput-root": {
       "& fieldset": {
         borderColor: "teal"
       }},borderRadius:2,
@@ -81,7 +81,7 @@ import {useAuth} from './AuthContext';
        value={username} label="username" 
        onChange={(e) => setUsername(e.target.value)}
       />
-      <TextField  sx={{maxWidth:"40vw", "& .MuiOutlinedInput-root": {
+      <TextField  sx={{width:{xs:"45vw",md:"70vw"}, "& .MuiOutlinedInput-root": {
       "& fieldset": {
         borderColor: "teal"
       }},borderRadius:2,
@@ -125,6 +125,7 @@ import {useAuth} from './AuthContext';
     position: "relative",
     textTransform: "none",
     fontWeight: 500,
+    fontSize:"1rem"
   }}
   disabled={loading}
 >
