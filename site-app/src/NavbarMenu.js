@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
  import './App.css'
 import { AppBar, Toolbar, IconButton, Typography, } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -9,34 +9,24 @@ import {NavLink ,Outlet} from 'react-router-dom';
 import {Box} from "@mui/material";
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 
-export default function FullWidthMenu({ toggleTheme, mode }) {
+export default function NavbarMenu({ toggleTheme, mode }) {
  
  
    const [menuOpen, setMenuOpen] = useState(false);
 
   const menuRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      
-      if (menuOpen && menuRef.current && !menuRef.current.contains(event.target)) {
-        setMenuOpen(false);
-      }
-    };
-
-   
-    document.addEventListener("mousedown", handleClickOutside);
-
-  
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [menuOpen]);
   
    
-const handleMenuToggle = () => {
-setMenuOpen(!menuOpen);
-};
+const handleMenuToggle = (e) => {
+    // Prevent this click from being seen by ClickAwayListener right away
+    e.stopPropagation();
+    setMenuOpen((current) => !current);
+  };
+
+  const handleClickAway = () => {
+    setMenuOpen(false);
+  };
 
 const navItems = [
     { name: "NEWS",   path: "/"   },
@@ -77,10 +67,10 @@ return (
 
  <Box sx={{ display: "flex",flex:1,justifyContent:"flex-end",}}>
     <IconButton color="inherit" onClick={toggleTheme}>
-      {mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
+      {mode === "light" ? <Brightness4Icon sx={{size:{xs:"small",md:"large"}}}/> : <Brightness7Icon sx={{size:{xs:"small",md:"large"}}}/>}
     </IconButton>
     <IconButton edge="start" color="inherit" onClick={handleMenuToggle} sx={{marginLeft:{xs:1,md:2}}} >
-      <MenuIcon />
+      <MenuIcon sx={{size:{xs:"small",md:"large"}}}/>
     </IconButton>
    
   </Box>
@@ -88,7 +78,7 @@ return (
 </Toolbar>
 </AppBar>
 {menuOpen && (
-  <ClickAwayListener onClickAway={() => setMenuOpen(false)}>
+  <ClickAwayListener onClickAway={handleClickAway}>
         <Box  ref={menuRef}
           sx={{
            

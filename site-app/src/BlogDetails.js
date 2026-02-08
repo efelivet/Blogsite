@@ -51,7 +51,7 @@ const BlogDetail = ({ currentUser }) => {
         <Typography variant="h4" gutterBottom fontWeight="bold" sx={{textAlign:"center",fontSize:{xs:"1.4rem",md:"2rem",lg:"2.6rem"}}}>
           {post.title}
         </Typography>
-        <Typography variant="body1" color="text.primary" paragraph sx={{fontSize:{xs:"1rem",md:"1.5rem",lg:"2rem"}}}>
+        <Typography variant="body1" color="text.primary" paragraph sx={{fontSize:{xs:"1rem",md:"1.5rem",lg:"2rem",fontWeight:"bold"}}}>
           {post.description} 
         </Typography>
         <Box sx={{ mt: 1, mb: 1 }}>

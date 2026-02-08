@@ -40,7 +40,8 @@ const BlogCard = ({ post, currentUser }) => {
               WebkitLineClamp: 3,
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
-              fontSize:{xs:"1rem",md:"1.5rem",lg:"2rem"}
+              fontSize:{xs:"1rem",md:"1.5rem",lg:"2rem"},
+              fontWeight:"bold",
             }}
           >
             {post.description}
@@ -60,8 +61,8 @@ const BlogCard = ({ post, currentUser }) => {
           <Box>
              <Link to={`/blog/${post._id}`} style={{textDecoration:"none"}}>
              <Chip      
-              label="Read more"
-              size="small"
+              label="READ MORE"
+              size="large"
               color="primary"
               sx={{ mr: 2, mb: 1 }}
             />
