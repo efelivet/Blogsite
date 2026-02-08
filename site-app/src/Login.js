@@ -161,7 +161,7 @@ import {useAuth} from './AuthContext';
 </Button>
 
    </Box>
-   <Typography variant='body2' align='center' sx={{mt:2,color:"teal"}}>
+   <Typography variant='body2' align='center' sx={{mt:2,color:"teal",fontSize:"1rem"}}>
     Don't have an account?{" "}
     <Link to="/register">Register</Link>
    </Typography>

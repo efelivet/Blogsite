@@ -144,7 +144,7 @@
 </Button>
 
 
-       <Typography variant ="body2" sx={{color:"teal"}}>
+       <Typography variant ="body2" sx={{color:"teal",fontSize:"1rem"}}>
          Already have an account?{" "}
          <Link to="/login" style={{color:"#2e7d32",textDecoration:"none"}}>
          Login

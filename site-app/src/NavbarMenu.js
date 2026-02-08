@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from "react";
+import React from "react";
  import './App.css'
 import { AppBar, Toolbar, IconButton, Typography, } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -7,25 +7,25 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import {NavLink ,Outlet} from 'react-router-dom';
 import {Box} from "@mui/material";
-import ClickAwayListener from '@mui/material/ClickAwayListener';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 export default function NavbarMenu({ toggleTheme, mode }) {
  
  
-   const [menuOpen, setMenuOpen] = useState(false);
-
-  const menuRef = useRef(null);
-
   
-   
-const handleMenuToggle = (e) => {
-    // Prevent this click from being seen by ClickAwayListener right away
-    e.stopPropagation();
-    setMenuOpen((current) => !current);
+
+ 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  
+  
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const handleClickAway = () => {
-    setMenuOpen(false);
+
+   const handleClose = () => {
+    setAnchorEl(null);
   };
 
 const navItems = [
@@ -69,39 +69,44 @@ return (
     <IconButton color="inherit" onClick={toggleTheme}>
       {mode === "light" ? <Brightness4Icon sx={{size:{xs:"small",md:"large"}}}/> : <Brightness7Icon sx={{size:{xs:"small",md:"large"}}}/>}
     </IconButton>
-    <IconButton edge="start" color="inherit" onClick={handleMenuToggle} sx={{marginLeft:{xs:1,md:2}}} >
-      <MenuIcon sx={{size:{xs:"small",md:"large"}}}/>
-    </IconButton>
+  
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                sx={{ mt:{xs:0.5,md:0.9},ml:{xs:1.8,md:2.9} }}
+              >
+                <MenuItem onClick={handleClose}><NavLink to ="/register" style={{textDecoration:"none"}}>Sign Up</NavLink></MenuItem>
+                <MenuItem onClick={handleClose}><NavLink to ="/login" style={{textDecoration:"none"}}>Login</NavLink></MenuItem>
+              </Menu>
+            </div>
+         
    
   </Box>
 
 </Toolbar>
 </AppBar>
-{menuOpen && (
-  <ClickAwayListener onClickAway={handleClickAway}>
-        <Box  ref={menuRef}
-          sx={{
-           
-            position: "fixed",
-            top: 64,
-            right: 2,
-            bgcolor: "background.paper",
-            color: "text.primary",
-            p: 2,
-            borderRadius: 1,
-            boxShadow: 3,
-            zIndex: 1200,
-          }}
-        >
-          <NavLink to="/register" style={{ textDecoration: "none" }}>
-            <Box sx={{ py: 1, px: 2 }}>Sign Up</Box>
-          </NavLink>
-          <NavLink to="/login" style={{ textDecoration: "none" }}>
-            <Box sx={{ py: 1, px: 2 }}>Login</Box>
-          </NavLink>
-        </Box>
-        </ClickAwayListener>
-      )}
 
   
 
