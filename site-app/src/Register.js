@@ -42,8 +42,7 @@
   }
 
      return(
-   <Container maxWidth ="sm" sx={{mt:2,display:"flex",
-    justifyContent:"center",alignItems:"center",
+   <Container maxWidth ="sm" sx={{display:"flex",height:"70vh",justifyContent:"center",alignItems:"center",
    
    }}>
     <Paper elevation ={3} sx ={{p:2,borderRadius:3,
@@ -54,7 +53,7 @@
  
     <Box component ="form" onSubmit ={handleSubmit} sx={{display:"flex",flexDirection:"column",alignItems:"center",
        justifyContent:"center",}}>
-       <TextField sx={{maxWidth:300,mb:2,  "& .MuiInputLabel-root": {
+       <TextField sx={{maxWidth:"40vw",mb:2,  "& .MuiInputLabel-root": {
       color: "teal"
     },
        "& .MuiOutlinedInput-root": {
@@ -65,7 +64,7 @@
         value={username}
         onChange={(e)=>setUsername(e.target.value)}/>
 
-       <TextField  sx={{maxWidth:300,mb:2,  "& .MuiInputLabel-root": {
+       <TextField  sx={{maxWidth:"40vw",mb:2,  "& .MuiInputLabel-root": {
       color: "teal"
     },
        "& .MuiOutlinedInput-root": {
@@ -76,7 +75,7 @@
        label ="password"
        onChange={(e)=>setPassword(e.target.value)} />
 
-       <TextField  sx={{maxWidth:300,  "& .MuiInputLabel-root": {
+       <TextField  sx={{maxWidth:"40vw",  "& .MuiInputLabel-root": {
       color: "teal"
     },
        "& .MuiOutlinedInput-root": {
@@ -97,7 +96,7 @@
      <Button
   type="submit"
   variant="contained"
-  fullWidth
+  smallWidth
   sx={{
     mt: 3,
     backgroundColor: "#1976d2",

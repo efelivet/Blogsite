@@ -59,8 +59,7 @@ import {useAuth} from './AuthContext';
 
     return(
 
-  <Container maxWidth ="sm" sx={{mt:5,display:"flex",
-   justifyContent:"center",alignItems:"center",
+  <Container maxWidth ="sm" sx={{display:"flex",height:"70vh", justifyContent:"center",alignItems:"center",
   
   }}>
    <Paper elevation ={3} sx ={{p:2,borderRadius:3,
@@ -71,7 +70,7 @@ import {useAuth} from './AuthContext';
 
    <Box   component="form"  onSubmit={handleSubmit} sx={{display:"flex",flexDirection:"column",alignItems:"center",
       justifyContent:"center",}}>
-      <TextField sx={{maxWidth:300,mb:3,"& .MuiOutlinedInput-root": {
+      <TextField sx={{maxWidth:"40vw",mb:3,"& .MuiOutlinedInput-root": {
       "& fieldset": {
         borderColor: "teal"
       }},borderRadius:2,
@@ -82,7 +81,7 @@ import {useAuth} from './AuthContext';
        value={username} label="username" 
        onChange={(e) => setUsername(e.target.value)}
       />
-      <TextField  sx={{maxWidth:300, "& .MuiOutlinedInput-root": {
+      <TextField  sx={{maxWidth:"40vw", "& .MuiOutlinedInput-root": {
       "& fieldset": {
         borderColor: "teal"
       }},borderRadius:2,
@@ -115,7 +114,7 @@ import {useAuth} from './AuthContext';
      <Button
   type="submit"
   variant="contained"
-  fullWidth
+  smallWidth
   sx={{
     mt: 3,
     backgroundColor: "#1976d2",
